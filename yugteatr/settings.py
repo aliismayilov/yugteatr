@@ -126,6 +126,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
+    'easy_thumbnails',
     'web', # my app
     'south',
 )
