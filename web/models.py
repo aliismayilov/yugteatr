@@ -10,7 +10,7 @@ class Language(models.Model):
         ordering = ['order']
 
     def __unicode__(self):
-        return self.title
+        return self.name
 
     def get_absolute_url(self):
         return '/%s' % self.name
