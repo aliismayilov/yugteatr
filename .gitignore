@@ -6,3 +6,6 @@ venv
 data.db
 Thumbs.db
 media
+
+static
+!web/static
