@@ -83,8 +83,8 @@ class PlayInformation(models.Model):
 
 class Performance(models.Model):
     play = models.ForeignKey('Play')
-    actors = models.ManyToManyField('Actor', related_name='actors')
     show_time = models.DateTimeField()
+    actors = models.ManyToManyField('Actor', related_name='actors')
 
     def __unicode__(self):
         return '%s - %s' % (self.play.slug, self.show_time.strftime('%d.%b.%Y'))
