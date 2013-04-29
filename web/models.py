@@ -83,6 +83,7 @@ class PlayInformation(models.Model):
 
 class Performance(models.Model):
     play = models.ForeignKey('Play')
+    actors = models.ManyToManyField('Actor', related_name='actors')
     show_time = models.DateTimeField()
 
     def __unicode__(self):
