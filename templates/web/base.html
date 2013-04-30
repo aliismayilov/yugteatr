@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+{% load staticfiles %}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8">
+	<title>YUĞ</title>
+	<link href="{% static "css/main.css" %}" type="text/css" rel="stylesheet" />
+	<link href="{% static "css/menu.css" %}" type="text/css" rel="stylesheet" />
+	<script type="text/javascript" src="{% static "js/raphael-min.js" %}"></script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+	<script type="text/javascript" src="{% static "js/scripts.js" %}"></script>
+	
+	<!--[if IE 7]>
+		<style type="text/css">
+			#menu li ul { margin-left: -85px; margin-top: 43px; }
+			#menu-bar-right #search-label { margin-top: 4px; margin-left: -176px; }
+		</style>
+	<![endif]-->
+	<!--[if IE 8]>
+		<style type="text/css">
+			#menu li ul { margin-top: 25px; }
+		</style>
+	<![endif]-->
+	<!--[if IE 9]>
+		<style type="text/css">
+			#menu li ul { margin-top: 25px; }
+		</style>
+	<![endif]-->
+</head>
+<body>
+	<table cellpadding="0" cellspacing="0" id="wrapper">
+		<tr>
+			<td id="wrapper-left"></td>
+			<td id="wrapper-center">
+				<div id="header">
+					<a href="#" id="logo-link"></a>
+					<div id="langs">
+						<a href="#">AZ</a><a href="#">EN</a><a href="#">RU</a>
+					</div>
+				</div>
+				<div id="menu-bar">
+					<ul id="menu">
+						<li class="menu-item"><a href="#">Ana səhifə</a></li>
+						<li class="menu-item"><a href="#">Fəaliyyət</a>
+							<ul>
+								<li class="menu-down-li"><a href="#">Xəbərlər</a></li>
+								<li class="menu-down-li"><a href="#">Layihələr</a></li>
+								<li class="menu-down-li"><a href="#">Arxiv</a></li>
+							</ul>
+						</li>
+						<li class="menu-item"><a href="#">Teatr</a>
+							<ul>
+								<li class="menu-down-li"><a href="#">Tarix</a></li>
+								<li class="menu-down-li"><a href="#">Yuğlama ayini</a></li>
+								<li class="menu-down-li"><a href="#">İdeya</a></li>
+							</ul>
+						</li>
+						<li class="menu-item"><a href="#">Tamaşalar</a>
+							<ul>
+								<li class="menu-down-li"><a href="#">Bu həftə</a></li>
+								<li class="menu-down-li"><a href="#">Gələn həftə</a></li>
+								<li class="menu-down-li"><a href="#">Bu ay</a></li>
+								<li class="menu-down-li"><a href="#">Tam siyahı</a></li>
+							</ul>
+						</li>
+						<li class="menu-item"><a href="#">Heyət</a>
+							<ul>
+								<li class="menu-down-li"><a href="#">Rejisorlar</a></li>
+								<li class="menu-down-li"><a href="#">İfaçılar</a></li>
+								<li class="menu-down-li"><a href="#">Tərtibatçılar</a></li>
+								<li class="menu-down-li"><a href="#">Administrasiya</a></li>
+							</ul>
+						</li>
+						<li class="menu-item"><a href="#">Əlaqə</a></li>
+					</ul>
+					<div id="menu-bar-right">
+						<form action="#">
+							<input id="search-box" type="text" /><label for="search-box" id="search-label">Axtar...</label>
+						</form>
+					</div>
+				</div>
+				<div id="content">
+					<div id="content-left">
+						<img src="{% static "pics/pic1.jpg" %}" alt="" width="127" height="149" />
+					</div>
+					<div id="content-right">
+						<h1>History</h1>
+						<p>Brief history of the Theatre</p>
+						<p>YUG Theatre was founded as a training studio by Vagif Ibrahimoglu and Hasanaga Turabov on 18th of October, 1989. The studio had participated in a number of international festivals, such as International Youth Festival in Istanbul (Turkey, 1991) and FAJR festival (Iran, 1992).</p>
+						<p>In 1992 the theatre gained state status and became the YUG State Theatre.</p>
+						<p>YUG Theatre won Grand-Prix in 1995 on the experimental theatre festival and the Best Actor Prize in 1997 on TUGANLIK International theatre festival (Ufa, Russia).</p>
+						<p>In 2003 Theatre received the restored place - architectural building of XIX century. During whole period of activity the theatre has produced more than 70 performances. Nowadays, our THEATRE has got its own theory: psychosophy, which is formed by Vagif Ibrahimoglu – Chief Director of the THEATRE.</p>
+					</div>
+				</div>
+				<div id="footer">
+					<span>YUĞ TEATRI &copy; 2011</span>
+				</div>
+			</td>
+			<td id="wrapper-right"></td>
+		</tr>
+		<tr>
+			<td id="wrapper-bottom-left"></td>
+			<td id="wrapper-bottom"></td>
+			<td id="wrapper-bottom-right"></td>
+		</tr>
+	</table>
+</body>
+</html>
