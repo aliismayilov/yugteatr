@@ -62,7 +62,7 @@ MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://example.com/media/", "http://media.example.com/"
-MEDIA_URL = '/media/'
+MEDIA_URL = 'http://static.yugteatr.org.s3-website-us-west-2.amazonaws.com/media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -72,7 +72,7 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
-STATIC_URL = '/static/'
+STATIC_URL = 'http://static.yugteatr.org.s3-website-us-west-2.amazonaws.com/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
@@ -126,6 +126,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
+    'storages',
     'easy_thumbnails',
     'web', # my app
     'south',
@@ -159,3 +160,24 @@ LOGGING = {
         },
     }
 }
+
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# django storages related settings
+
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = 'static.yugteatr.org'
+AWS_REDUCED_REDUNDANCY = False
+AWS_PRELOAD_METADATA = True
+AWS_S3_SECURE_URLS = False
+AWS_QUERYSTRING_AUTH = False
+
+DEFAULT_FILE_STORAGE = 'yugteatr.s3utils.MediaRootS3BotoStorage'
+STATICFILES_STORAGE = 'yugteatr.s3utils.StaticRootS3BotoStorage'
+
+try:
+    from local_settings import *
+except ImportError:
+    pass
