@@ -19,7 +19,7 @@ class Language(models.Model):
 class Page(models.Model):
     title = models.CharField(max_length=50)
     slug = models.SlugField(max_length=50, unique=True)
-    body = models.TextField()
+    body = models.TextField(null=True, blank=True)
     language = models.ForeignKey('Language')
 
     url = models.CharField(max_length=200, blank=True, null=True)
