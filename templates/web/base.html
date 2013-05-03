@@ -34,37 +34,24 @@
 			<td id="wrapper-left"></td>
 			<td id="wrapper-center">
 				<div id="header">
-					<a href="#" id="logo-link"></a>
+					<a href="/{{ current_language }}" id="logo-link"></a>
 					<div id="langs">
-						<a href="#">EN</a><a href="#">AZ</a>
+						{% for l in languages %}<a href="{{ l.get_absolute_url }}">{{ l.name|upper }}</a>{% endfor %}
 					</div>
 				</div>
 				<div id="menu-bar">
 					<ul id="menu">
-						<li class="menu-item"><a href="#">Home</a></li>
-						<li class="menu-item"><a href="#">History</a>
+						{% for p in parent_pages %}
+						<li class="menu-item"><a href="{{ p.get_absolute_url }}">{{ p.title }}</a>
+							{% if p.page_set.all %}
 							<ul>
-								<li class="menu-down-li"><a href="#">Ritual of yuglama</a></li>
-								<li class="menu-down-li"><a href="#">Conception</a></li>
-								<li class="menu-down-li"><a href="#">News &and; projects</a></li>
+								{% for child in p.page_set.all %}
+									<li class="menu-down-li"><a href="{{ child.get_absolute_url }}">{{ child.title }}</a></li>
+								{% endfor %}
 							</ul>
+							{% endif %}
 						</li>
-						<li class="menu-item"><a href="#">Performances</a>
-							<ul>
-								<li class="menu-down-li"><a href="#">This week</a></li>
-								<li class="menu-down-li"><a href="#">Next week</a></li>
-								<li class="menu-down-li"><a href="#">This month</a></li>
-							</ul>
-						</li>
-						<li class="menu-item"><a href="#">Staff</a>
-							<ul>
-								<li class="menu-down-li"><a href="#">Directors</a></li>
-								<li class="menu-down-li"><a href="#">Performers</a></li>
-								<li class="menu-down-li"><a href="#">Designers</a></li>
-								<li class="menu-down-li"><a href="#">Administration</a></li>
-							</ul>
-						</li>
-						<li class="menu-item"><a href="#">Contact us</a></li>
+						{% endfor %}
 					</ul>
 					<div id="menu-bar-right">
 						<form action="#">
@@ -73,17 +60,9 @@
 					</div>
 				</div>
 				<div id="content">
-					<div id="content-left">
-						<img src="{% static "pics/pic1.jpg" %}" alt="" width="127" height="149" />
-					</div>
-					<div id="content-right">
-						<h1>History</h1>
-						<p>Brief history of the Theatre</p>
-						<p>YUG Theatre was founded as a training studio by Vagif Ibrahimoglu and Hasanaga Turabov on 18th of October, 1989. The studio had participated in a number of international festivals, such as International Youth Festival in Istanbul (Turkey, 1991) and FAJR festival (Iran, 1992).</p>
-						<p>In 1992 the theatre gained state status and became the YUG State Theatre.</p>
-						<p>YUG Theatre won Grand-Prix in 1995 on the experimental theatre festival and the Best Actor Prize in 1997 on TUGANLIK International theatre festival (Ufa, Russia).</p>
-						<p>In 2003 Theatre received the restored place - architectural building of XIX century. During whole period of activity the theatre has produced more than 70 performances. Nowadays, our THEATRE has got its own theory: psychosophy, which is formed by Vagif Ibrahimoglu – Chief Director of the THEATRE.</p>
-					</div>
+					{% block content %}
+						
+					{% endblock content %}
 				</div>
 				<div id="footer">
 					<span>YUĞ TEATRI &copy; {% now "Y" %}</span>
