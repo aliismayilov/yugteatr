@@ -17,7 +17,7 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-# Parse database configuration from $DATABASE_URL
+# Parse database configuration from $DATABASE_URL or use sqlite for development
 DATABASES = {
     'default': dj_database_url.config(default='sqlite:///' + os.path.join(PROJECT_ROOT, 'data.db'))
 }
