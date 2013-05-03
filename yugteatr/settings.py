@@ -1,4 +1,5 @@
 import os
+import dj_database_url
 
 PROJECT_ROOT = os.path.join(
     os.path.abspath(os.path.dirname(__file__)),
@@ -16,16 +17,9 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+# Parse database configuration from $DATABASE_URL or use sqlite for development
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': os.path.join(PROJECT_ROOT, 'data.db'),                      # Or path to database file if using sqlite3.
-        # The following settings are not used with sqlite3:
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '',                      # Set to empty string for default.
-    }
+    'default': dj_database_url.config(default='sqlite:///' + os.path.join(PROJECT_ROOT, 'data.db'))
 }
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
@@ -160,10 +154,6 @@ LOGGING = {
         },
     }
 }
-
-# Parse database configuration from $DATABASE_URL
-import dj_database_url
-DATABASES['default'] =  dj_database_url.config()
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
