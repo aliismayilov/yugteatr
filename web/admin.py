@@ -5,6 +5,7 @@ from yugteatr import settings
 
 class PageAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
+    list_filter = ('language',)
 
     class Media:
         js = (
