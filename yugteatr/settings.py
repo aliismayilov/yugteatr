@@ -120,6 +120,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
+    'django.contrib.humanize',
     'storages',
     'easy_thumbnails',
     'web', # my app
@@ -170,6 +171,18 @@ AWS_QUERYSTRING_AUTH = False
 
 DEFAULT_FILE_STORAGE = 'yugteatr.s3utils.MediaRootS3BotoStorage'
 STATICFILES_STORAGE = 'yugteatr.s3utils.StaticRootS3BotoStorage'
+
+# easy_thumbnails related settings
+THUMBNAIL_ALIASES = {
+    '': {
+        'x149': {
+            'size': (127, 149),
+            'crop': 'smart'
+        }
+    },
+}
+FILER_PUBLICMEDIA_THUMBNAIL_STORAGE = 'yugteatr.s3utils.filer_thumb_storage_s3'
+THUMBNAIL_DEFAULT_STORAGE = 'yugteatr.s3utils.S3BotoStorageReducedRedundancy'
 
 try:
     from local_settings import *

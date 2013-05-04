@@ -91,3 +91,6 @@ class Performance(models.Model):
 
     class Meta:
         ordering = ['-show_time']
+
+    def get_playinformation(self, language):
+        return self.play.playinformation_set.get(language=language)
