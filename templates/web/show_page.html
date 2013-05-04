@@ -1,0 +1,14 @@
+{% extends "web/base.html" %}
+
+{% load staticfiles %}
+{% load thumbnail %}
+{% load humanize %}
+
+{% block content %}
+<div class="mono-content">
+	<h1>{{ page.title }}</h1>
+	{% autoescape off %}
+    {{ page.body }}
+	{% endautoescape %}
+</div>
+{% endblock content %}

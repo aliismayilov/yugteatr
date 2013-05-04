@@ -96,6 +96,7 @@
 	min-height: 450px;
 	background: #2c2c2c url(../img/content-back.gif) repeat-x top;
 	padding-top: 20px;
+	color: white;
 }
 
 #content a, #content a:link {
@@ -122,6 +123,11 @@
 
 #content-right h1 {
 	font-size: 11pt;
+}
+
+.mono-content {
+	color: white;
+	padding: 10px 60px;
 }
 
 #footer {
