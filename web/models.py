@@ -88,3 +88,6 @@ class Performance(models.Model):
 
     def __unicode__(self):
         return '%s - %s' % (self.play.slug, self.show_time.strftime('%d.%b.%Y'))
+
+    class Meta:
+        ordering = ['-show_time']
