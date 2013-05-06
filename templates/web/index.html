@@ -6,19 +6,25 @@
 
 {% block content %}
 <div id="content-left">
-	{% for photo in upcoming_performance.play.playphoto_set.all %}
-		<img src="{{ photo.photo.x149.url }}" alt="{{ photo.title }}" width="{{ photo.photo.x149.width }}" height="{{ photo.photo.x149.height }}" />
-	{% endfor %}
+	{% if upcoming_performance %}
+		{% for photo in upcoming_performance.play.playphoto_set.all %}
+			<img src="{{ photo.photo.x149.url }}" alt="{{ photo.title }}" width="{{ photo.photo.x149.width }}" height="{{ photo.photo.x149.height }}" />
+		{% endfor %}
+	{% endif %}
 </div>
 <div id="content-right">
-	<h1>{{ upcoming_playinformation.title }}</h1>
-	<p>Show time: <time>{{ upcoming_performance.show_time|naturalday }}</time></p>
-	<p>Actors:
-	{% for actor in upcoming_performance.actors.all %}
-		{{ actor.name }}{% if not forloop.last %},{% endif %}
-	{% endfor %}</p>
-	{% autoescape off %}
-    {{ upcoming_playinformation.body }}
-	{% endautoescape %}
+	{% if upcoming_performance %}
+		<h1>{{ upcoming_playinformation.title }}</h1>
+		<p>Show time: <time>{{ upcoming_performance.show_time|naturalday }}</time></p>
+		<p>Actors:
+		{% for actor in upcoming_performance.actors.all %}
+			{{ actor.name }}{% if not forloop.last %},{% endif %}
+		{% endfor %}</p>
+		{% autoescape off %}
+	    {{ upcoming_playinformation.body }}
+		{% endautoescape %}
+	{% else %}
+		There're no performances.
+	{% endif %}
 </div>
 {% endblock content %}

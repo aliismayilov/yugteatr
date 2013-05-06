@@ -11,12 +11,18 @@ def index(request, language_slug=None):
 
     upcoming_performance = Performance.objects.filter(
         show_time__gte=timezone.now()
-    ).latest('show_time')
-
+    )
+    # if there's some get closest, else none
+    if upcoming_performance:
+        upcoming_performance = upcoming_performance.latest('show_time')
+        upcoming_playinformation = upcoming_performance.get_playinformation(current_language)
+    else:
+        upcoming_performance = None
+        upcoming_playinformation = None
 
     context = {
         'upcoming_performance': upcoming_performance,
-        'upcoming_playinformation': upcoming_performance.get_playinformation(current_language),
+        'upcoming_playinformation': upcoming_playinformation,
         'parent_pages': Page.objects.filter(parent=None),
         'languages': Language.objects.all(),
         'current_language': current_language,
