@@ -41,17 +41,42 @@ class Page(models.Model):
             return '/%s/%s.html' % (self.language, self.slug)
 
 
-class Actor(models.Model):
-    name = models.CharField(max_length=50)
+
+
+class Person(models.Model):
     slug = models.SlugField(max_length=50)
 
-    photo = ThumbnailerImageField(upload_to='actors', blank=True, null=True)
+    photo = ThumbnailerImageField(upload_to='performers', blank=True, null=True)
+
+    # enum type field
+    PERFORMER = 1
+    DESIGNER = 2
+    DIRECTOR = 3
+    PERSON_TYPES = (
+        (PERFORMER, 'Performer'),
+        (DESIGNER, 'Designer'),
+        (DIRECTOR, 'Director'),
+    )
+    staff_type = models.IntegerField(choices=PERSON_TYPES)
+
+    def __unicode__(self):
+        return self.slug
+
+    def get_absolute_url(self):
+        return '/performers/%s' % self.slug
+
+    class Meta:
+        verbose_name = 'Staff'
+        verbose_name_plural = 'Staff'
+
+
+class PersonInformation(models.Model):
+    language = models.ForeignKey('Language')
+    name = models.CharField(max_length=50)
+    about = models.TextField()
 
     def __unicode__(self):
         return self.name
-
-    def get_absolute_url(self):
-        return '/actors/%s' % self.slug
 
 
 class Play(models.Model):
@@ -84,7 +109,10 @@ class PlayInformation(models.Model):
 class Performance(models.Model):
     play = models.ForeignKey('Play')
     show_time = models.DateTimeField()
-    actors = models.ManyToManyField('Actor', related_name='actors')
+    
+    performers = models.ManyToManyField('Person', related_name='performers')
+    designers = models.ManyToManyField('Person', related_name='designers')
+    directors = models.ManyToManyField('Person', related_name='directors')
 
     def __unicode__(self):
         return '%s - %s' % (self.play.slug, self.show_time.strftime('%d.%b.%Y'))
