@@ -14,10 +14,6 @@ class PageAdmin(admin.ModelAdmin):
         )
 
 
-class ActorAdmin(admin.ModelAdmin):
-    prepopulated_fields = {"slug": ("name",)}
-
-
 class PlayPhotoAdmin(admin.TabularInline):
     model = PlayPhoto
 
@@ -40,8 +36,20 @@ class PlayAdmin(admin.ModelAdmin):
         )
 
 
+class PerformanceAdmin(admin.ModelAdmin):
+    def formfield_for_manytomany(self, db_field, request, **kwargs):
+        if db_field.name == 'performers':
+            kwargs['queryset'] = Person.objects.filter(staff_type=Person.PERFORMER)
+        elif db_field.name == 'designers':
+            kwargs['queryset'] = Person.objects.filter(staff_type=Person.DESIGNER)
+        elif db_field.name == 'directors':
+            kwargs['queryset'] = Person.objects.filter(staff_type=Person.DIRECTOR)
+
+        return super(PerformanceAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
+
+
 admin.site.register(Page, PageAdmin)
 admin.site.register(Language)
-admin.site.register(Actor, ActorAdmin)
+admin.site.register(Person)
 admin.site.register(Play, PlayAdmin)
-admin.site.register(Performance)
+admin.site.register(Performance, PerformanceAdmin)
