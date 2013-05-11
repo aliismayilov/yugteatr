@@ -72,6 +72,7 @@ class Person(models.Model):
 
 class PersonInformation(models.Model):
     language = models.ForeignKey('Language')
+    person = models.ForeignKey('Person', null=True)
     name = models.CharField(max_length=50)
     about = models.TextField()
 
