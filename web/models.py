@@ -46,7 +46,7 @@ class Page(models.Model):
 class Person(models.Model):
     slug = models.SlugField(max_length=50)
 
-    photo = ThumbnailerImageField(upload_to='performers', blank=True, null=True)
+    photo = ThumbnailerImageField(upload_to='staff', blank=True, null=True)
 
     # enum type field
     PERFORMER = 1
@@ -63,7 +63,7 @@ class Person(models.Model):
         return self.slug
 
     def get_absolute_url(self):
-        return '/performers/%s' % self.slug
+        return '/staff/%s' % self.slug
 
     class Meta:
         verbose_name = 'Staff'
