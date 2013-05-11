@@ -13,6 +13,22 @@ class PageAdmin(admin.ModelAdmin):
             settings.STATIC_URL + 'js/ckeditor_init.js'
         )
 
+class PersonInformationAdmin(admin.StackedInline):
+    model = PersonInformation
+    extra = 2
+
+
+class PersonAdmin(admin.ModelAdmin):
+    inlines = [
+        PersonInformationAdmin,
+    ]
+
+    class Media:
+        js = (
+            '//cdnjs.cloudflare.com/ajax/libs/ckeditor/4.0.1/ckeditor.js',
+            settings.STATIC_URL + 'js/ckeditor_init.js'
+        )
+
 
 class PlayPhotoAdmin(admin.TabularInline):
     model = PlayPhoto
@@ -50,6 +66,6 @@ class PerformanceAdmin(admin.ModelAdmin):
 
 admin.site.register(Page, PageAdmin)
 admin.site.register(Language)
-admin.site.register(Person)
+admin.site.register(Person, PersonAdmin)
 admin.site.register(Play, PlayAdmin)
 admin.site.register(Performance, PerformanceAdmin)
